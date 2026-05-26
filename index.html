@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שליחות לאוסטרליה | שירותי עלייה וקהילה יהודית</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#0a0a0a;--bg2:#111;--bg3:#1a1a1a;
+--gold:#c9a96e;--gold2:#e8d5a8;--gold3:#b8943f;
+--txt:#f0ece4;--txt2:#a09a8e;--txt3:#6b6560;
+--accent:#2a6041;--accent2:#1d4a30;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden;line-height:1.6}
+
+/* NAV */
+nav{position:fixed;top:0;right:0;left:0;z-index:100;padding:1.2rem 4%;display:flex;align-items:center;justify-content:space-between;transition:background .3s;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+nav.scrolled{background:rgba(10,10,10,.95)}
+.logo{font-size:1.5rem;font-weight:800;letter-spacing:.05em;display:flex;align-items:center;gap:.6rem}
+.logo svg{width:36px;height:36px}
+.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{color:var(--txt2);text-decoration:none;font-size:.9rem;font-weight:500;transition:color .3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--bg);padding:.65rem 1.8rem;border-radius:50px;font-weight:600;font-size:.85rem;text-decoration:none;transition:all .3s;border:2px solid var(--gold)}
+.nav-cta:hover{background:transparent;color:var(--gold)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}
+.hamburger span{width:26px;height:2px;background:var(--txt);transition:.3s}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:8rem 6% 4rem}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,10,10,.97) 0%,rgba(10,10,10,.8) 40%,rgba(10,10,10,.4) 100%);z-index:1}
+.hero-bg{position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900"><defs><radialGradient id="g1" cx="70%25" cy="40%25" r="60%25"><stop offset="0%25" stop-color="%23c9a96e" stop-opacity="0.08"/><stop offset="100%25" stop-color="%230a0a0a" stop-opacity="0"/></radialGradient><radialGradient id="g2" cx="20%25" cy="80%25" r="40%25"><stop offset="0%25" stop-color="%232a6041" stop-opacity="0.1"/><stop offset="100%25" stop-color="%230a0a0a" stop-opacity="0"/></radialGradient></defs><rect fill="%230a0a0a" width="1440" height="900"/><rect fill="url(%23g1)" width="1440" height="900"/><rect fill="url(%23g2)" width="1440" height="900"/></svg>') center/cover}
+.hero-content{position:relative;z-index:2;max-width:700px}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;color:var(--gold);font-size:.85rem;font-weight:500;margin-bottom:1.5rem;letter-spacing:.1em}
+.hero-badge::before{content:'';width:8px;height:8px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:900;line-height:1.05;margin-bottom:1.5rem;color:var(--txt)}
+.hero h1 em{font-style:normal;color:var(--gold);display:block}
+.hero p{font-size:1.15rem;color:var(--txt2);max-width:520px;margin-bottom:2.5rem;line-height:1.8}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:.6rem;background:var(--gold);color:var(--bg);padding:.9rem 2.2rem;border-radius:50px;font-weight:600;font-size:.95rem;text-decoration:none;transition:all .4s;border:2px solid var(--gold)}
+.btn-primary:hover{background:transparent;color:var(--gold);transform:translateY(-2px)}
+.btn-primary svg{width:18px;height:18px;transition:transform .3s}
+.btn-primary:hover svg{transform:translateX(-4px)}
+.btn-outline{display:inline-flex;align-items:center;gap:.6rem;border:2px solid var(--txt3);color:var(--txt2);padding:.9rem 2.2rem;border-radius:50px;font-weight:500;font-size:.95rem;text-decoration:none;transition:all .4s}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+
+.hero-stats{position:relative;z-index:2;display:flex;gap:3rem;margin-top:4rem;padding-top:2rem;border-top:1px solid rgba(201,169,110,.15)}
+.stat{text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:var(--gold)}
+.stat-label{font-size:.8rem;color:var(--txt3);margin-top:.2rem}
+
+/* SERVICES STRIP */
+.services-strip{background:var(--bg2);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);padding:1.5rem 0;overflow:hidden}
+.strip-inner{display:flex;gap:0;animation:scroll-strip 25s linear infinite;width:max-content}
+.strip-item{display:flex;align-items:center;gap:.6rem;padding:0 2.5rem;white-space:nowrap;color:var(--txt2);font-size:.9rem;font-weight:400}
+.strip-item svg{width:20px;height:20px;color:var(--gold);flex-shrink:0}
+@keyframes scroll-strip{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* SECTION */
+section{padding:6rem 6%}
+.section-label{display:inline-flex;align-items:center;gap:.5rem;color:var(--gold);font-size:.8rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;margin-bottom:1rem}
+.section-label::before{content:'';width:30px;height:1px;background:var(--gold)}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:700;margin-bottom:1rem;line-height:1.2}
+.section-desc{color:var(--txt2);font-size:1.05rem;max-width:600px;line-height:1.8}
+
+/* SERVICES */
+.services{background:var(--bg)}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:3rem}
+.service-card{background:var(--bg2);border:1px solid rgba(255,255,255,.05);border-radius:16px;padding:2.5rem;transition:all .5s;position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;top:0;right:0;width:100%;height:3px;background:linear-gradient(90deg,var(--gold),var(--accent));transform:scaleX(0);transform-origin:right;transition:transform .5s}
+.service-card:hover::before{transform:scaleX(1)}
+.service-card:hover{border-color:rgba(201,169,110,.2);transform:translateY(-4px)}
+.service-icon{width:52px;height:52px;background:rgba(201,169,110,.08);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem}
+.service-icon svg{width:26px;height:26px;color:var(--gold)}
+.service-card h3{font-size:1.25rem;font-weight:700;margin-bottom:.8rem}
+.service-card p{color:var(--txt2);font-size:.9rem;line-height:1.8}
+.service-num{position:absolute;top:1.5rem;left:1.5rem;font-family:'Playfair Display',serif;font-size:3rem;font-weight:700;color:rgba(201,169,110,.06)}
+
+/* ABOUT */
+.about{background:var(--bg2)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3rem}
+.about-visual{position:relative;height:500px;border-radius:20px;overflow:hidden;background:var(--bg3);display:flex;align-items:center;justify-content:center}
+.about-visual-inner{text-align:center;padding:3rem}
+.about-year{font-family:'Playfair Display',serif;font-size:8rem;font-weight:900;color:rgba(201,169,110,.1);line-height:1}
+.about-place{font-size:1.3rem;color:var(--gold);font-weight:600;margin-top:-1rem}
+.about-visual::after{content:'';position:absolute;inset:0;border:1px solid rgba(201,169,110,.1);border-radius:20px;pointer-events:none}
+.about-text h3{font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:1.5rem;line-height:1.3}
+.about-text p{color:var(--txt2);line-height:2;margin-bottom:1.5rem}
+.about-features{display:flex;flex-direction:column;gap:1rem;margin-top:2rem}
+.about-feature{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:var(--bg);border-radius:12px;border:1px solid rgba(255,255,255,.04)}
+.about-feature svg{width:22px;height:22px;color:var(--gold);flex-shrink:0}
+.about-feature span{font-size:.95rem;font-weight:500}
+
+/* PROCESS */
+.process{background:var(--bg)}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:3rem}
+.step{text-align:center;padding:2.5rem 1.5rem;position:relative}
+.step::after{content:'';position:absolute;top:3.5rem;left:-1rem;width:2rem;height:1px;background:var(--gold3);opacity:.3}
+.step:last-child::after{display:none}
+.step-num{font-family:'Playfair Display',serif;font-size:3rem;font-weight:700;color:var(--gold);opacity:.3;margin-bottom:.5rem}
+.step h4{font-size:1.1rem;font-weight:700;margin-bottom:.8rem}
+.step p{color:var(--txt2);font-size:.85rem;line-height:1.7}
+
+/* COMMUNITY */
+.community{background:var(--bg2);text-align:center}
+.community-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+.comm-card{background:var(--bg);border-radius:16px;padding:2.5rem;border:1px solid rgba(255,255,255,.04);transition:all .4s}
+.comm-card:hover{border-color:rgba(201,169,110,.15);transform:translateY(-3px)}
+.comm-card .emoji{font-size:2.5rem;margin-bottom:1rem;display:block}
+.comm-card h4{font-size:1.1rem;font-weight:700;margin-bottom:.6rem}
+.comm-card p{color:var(--txt2);font-size:.88rem;line-height:1.7}
+
+/* TESTIMONIAL */
+.testimonial{background:var(--bg);text-align:center;padding:6rem 10%}
+.testimonial blockquote{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,2.5vw,2rem);line-height:1.6;color:var(--txt);max-width:800px;margin:2rem auto}
+.testimonial cite{color:var(--gold);font-style:normal;font-size:.95rem;font-weight:600}
+.quote-mark{font-family:'Playfair Display',serif;font-size:5rem;color:var(--gold);opacity:.2;line-height:1}
+
+/* CTA */
+.cta-section{background:linear-gradient(135deg,var(--accent2) 0%,var(--bg) 100%);text-align:center;padding:6rem 6%;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;top:-50%;right:-20%;width:500px;height:500px;background:radial-gradient(circle,rgba(201,169,110,.08) 0%,transparent 70%);border-radius:50%}
+.cta-section h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);margin-bottom:1rem}
+.cta-section p{color:var(--txt2);font-size:1.1rem;margin-bottom:2.5rem;max-width:500px;margin-left:auto;margin-right:auto}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid rgba(255,255,255,.05);padding:3rem 6% 1.5rem}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:2rem}
+.footer-brand p{color:var(--txt2);font-size:.88rem;line-height:1.8;margin-top:1rem;max-width:300px}
+.footer-col h5{color:var(--gold);font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem}
+.footer-col a{display:block;color:var(--txt3);text-decoration:none;font-size:.88rem;margin-bottom:.6rem;transition:color .3s}
+.footer-col a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.05);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center}
+.footer-bottom p{color:var(--txt3);font-size:.8rem}
+.social-links{display:flex;gap:1rem}
+.social-links a{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;transition:all .3s}
+.social-links a:hover{border-color:var(--gold);background:rgba(201,169,110,.1)}
+.social-links a svg{width:16px;height:16px;color:var(--txt3)}
+.social-links a:hover svg{color:var(--gold)}
+
+/* WHATSAPP */
+.whatsapp{position:fixed;bottom:2rem;left:2rem;z-index:99;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .3s;cursor:pointer;text-decoration:none}
+.whatsapp:hover{transform:scale(1.1)}
+.whatsapp svg{width:28px;height:28px;fill:#fff}
+
+/* MOBILE */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .hero{padding:7rem 5% 3rem}
+  .hero-stats{flex-wrap:wrap;gap:1.5rem}
+  .services-grid{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr;gap:2rem}
+  .about-visual{height:300px}
+  .process-steps{grid-template-columns:1fr 1fr;gap:1rem}
+  .step::after{display:none}
+  .community-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr;gap:2rem}
+}
+
+/* ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(30px);transition:all .8s cubic-bezier(.16,1,.3,1)}
+.fade-up.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="logo">
+    <svg viewBox="0 0 36 36" fill="none"><path d="M18 2L4 10v16l14 8 14-8V10L18 2z" stroke="currentColor" stroke-width="1.5" fill="none" color="#c9a96e"/><path d="M18 8l8 4.5v9L18 26l-8-4.5v-9L18 8z" fill="#c9a96e" opacity=".15"/><path d="M18 12v14M11 15.5L18 12l7 3.5" stroke="#c9a96e" stroke-width="1.2"/></svg>
+    <div><span>SHLICHUT</span> AUSTRALIA</div>
+  </div>
+  <div class="nav-links">
+    <a href="#services">שירותים</a>
+    <a href="#about">אודות</a>
+    <a href="#process">התהליך</a>
+    <a href="#community">קהילה</a>
+    <a href="#contact" class="nav-cta">צרו קשר &larr;</a>
+  </div>
+  <button class="hamburger" onclick="this.classList.toggle('active')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content fade-up">
+    <div class="hero-badge">הגשר בין אוסטרליה לישראל</div>
+    <h1>שירותי עלייה<em>לקהילה היהודית באוסטרליה</em></h1>
+    <p>אנחנו מלווים עולים מאוסטרליה בכל שלב &mdash; מהחלטה ראשונית ועד קליטה מוצלחת בישראל. ניסיון אישי, הבנה עמוקה של הקהילה, ורשת קשרים שנבנתה לאורך שנים של שליחות במלבורן.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">
+        התחילו את המסע
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </a>
+      <a href="#services" class="btn-outline">השירותים שלנו</a>
+    </div>
+  </div>
+  <div class="hero-stats fade-up">
+    <div class="stat"><div class="stat-num">15+</div><div class="stat-label">שנות ניסיון</div></div>
+    <div class="stat"><div class="stat-num">500+</div><div class="stat-label">משפחות עולות</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">ליווי אישי</div></div>
+    <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">זמינות מלאה</div></div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="services-strip">
+  <div class="strip-inner">
+    <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6M9 9h.01M15 9h.01M9 13h.01M15 13h.01"/></svg>דיור וקליטה</div>
+    <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14v7"/><path d="M3 9v7l9 5 9-5V9"/></svg>חינוך ילדים</div>
+    <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>תעסוקה</div>
+    <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>קהילה יהודית</div>
+    <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>ביורוקרטיה</div>
+    <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>רילוקיישן</div>
+    <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6M9 9h.01M15 9h.01M9 13h.01M15 13h.01"/></svg>דיור וקליטה</div>
+    <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14v7"/><path d="M3 9v7l9 5 9-5V9"/></svg>חינוך ילדים</div>
+    <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>תעסוקה</div>
+    <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>קהילה יהודית</div>
+    <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>ביורוקרטיה</div>
+    <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>רילוקיישן</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-label fade-up">מה אנחנו מציעים</div>
+  <div class="section-title fade-up">שירותים מקצועיים<br>לכל שלב בדרך</div>
+  <div class="section-desc fade-up">מליווי תהליך העלייה ועד קליטה מוצלחת &mdash; אנחנו איתכם בכל צעד</div>
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-num">01</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+      <h3>ליווי תהליך עלייה</h3>
+      <p>מלווים אתכם מהרגע שההחלטה מתגבשת. פתיחת תיק בסוכנות, תיאום מול משרד הקליטה, ועד הנחיתה בארץ &mdash; הכל מסודר מראש.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-num">02</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg></div>
+      <h3>דיור והתיישבות</h3>
+      <p>מציאת דירה, הבנת שוק הנדל"ן הישראלי, התאמת אזור מגורים לצרכי המשפחה. קשרים ישירים עם שכונות קליטה ופרויקטים ייעודיים.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-num">03</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14v7"/><path d="M3 9v7l9 5 9-5V9"/></svg></div>
+      <h3>חינוך והשמה</h3>
+      <p>בחירת מוסדות חינוך מתאימים &mdash; מגנים ועד תיכון. הכרת מערכת החינוך הישראלית, רישום, והכנת הילדים למעבר חלק.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-num">04</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
+      <h3>תעסוקה וקריירה</h3>
+      <p>סיוע במציאת עבודה, הכוונה מקצועית, הכרת שוק העבודה הישראלי. קשרים עם מעסיקים שמכירים את הערך של עולים מאוסטרליה.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-num">05</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></div>
+      <h3>ביורוקרטיה ומסמכים</h3>
+      <p>טיפול בכל הניירת &mdash; ביטוח לאומי, קופת חולים, בנקים, מיסים, רישוי. נחסוך לכם שעות של תורים ואי-הבנות.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-num">06</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+      <h3>חיבור קהילתי</h3>
+      <p>חיבור לקהילות יהודיות-אוסטרליות בישראל, אירועים, קבוצות תמיכה ורשתות חברתיות. כי עלייה מוצלחת מתחילה בקהילה.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-label fade-up">הסיפור שלנו</div>
+  <div class="section-title fade-up">מהשליחות במלבורן<br>לליווי עולים מקצועי</div>
+  <div class="about-grid">
+    <div class="about-visual fade-up">
+      <div class="about-visual-inner">
+        <div class="about-year">2009</div>
+        <div class="about-place">Melbourne, Australia</div>
+        <p style="color:var(--txt3);margin-top:1.5rem;font-size:.9rem;line-height:1.8">כולל תורה מציון &bull; בני עקיבא &bull; יבנה קולג' &bull; הקהילה המזרחית</p>
+      </div>
+    </div>
+    <div class="about-text fade-up">
+      <h3>ניסיון שליחותי אמיתי בלב הקהילה היהודית במלבורן</h3>
+      <p>במסגרת שליחותנו בכולל תורה מציון, פעלנו בלב הקהילה היהודית במלבורן &mdash; הערכנו שיעורים בבית הספר יבנה, הפעלנו מחנות קיץ וחורף, הנהגנו תנועת נוער עם בני עקיבא, וליווינו משפחות בחיי הקהילה.</p>
+      <p>הניסיון הזה לימד אותנו להכיר לעומק את האופי הייחודי של הקהילה היהודית באוסטרליה &mdash; ואת האתגרים והחלומות של מי שבוחר לעלות לישראל.</p>
+      <div class="about-features">
+        <div class="about-feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>שליחות במסגרת כולל תורה מציון &mdash; מלבורן</span>
+        </div>
+        <div class="about-feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>הוראה בבית הספר יבנה והפעלת מחנות נוער</span>
+        </div>
+        <div class="about-feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>הכרות אישית עם הקהילה המזרחית, Bnei Akiva ו-Kosher Australia</span>
+        </div>
+        <div class="about-feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>רשת קשרים בסידני, פרת', מלבורן וניו זילנד</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div style="text-align:center">
+    <div class="section-label fade-up">איך זה עובד</div>
+    <div class="section-title fade-up">ארבעה שלבים לעלייה מוצלחת</div>
+  </div>
+  <div class="process-steps">
+    <div class="step fade-up">
+      <div class="step-num">01</div>
+      <h4>שיחת היכרות</h4>
+      <p>נבין את הצרכים, החלומות והמצב המשפחתי שלכם. נבנה תוכנית מותאמת אישית.</p>
+    </div>
+    <div class="step fade-up">
+      <div class="step-num">02</div>
+      <h4>תכנון ומסמכים</h4>
+      <p>פתיחת תיק עלייה, תיאום מול הסוכנות ומשרד הקליטה, הכנת כל הניירת.</p>
+    </div>
+    <div class="step fade-up">
+      <div class="step-num">03</div>
+      <h4>הכנה לקראת</h4>
+      <p>מציאת דיור, רישום לחינוך, פתיחת חשבון בנק, ביטוח בריאות &mdash; הכל מוכן מראש.</p>
+    </div>
+    <div class="step fade-up">
+      <div class="step-num">04</div>
+      <h4>קליטה וליווי</h4>
+      <p>קבלת פנים בנתב"ג, ליווי בימים הראשונים, חיבור לקהילה וסיוע שוטף.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="community" id="community">
+  <div class="section-label fade-up">חיבור קהילתי</div>
+  <div class="section-title fade-up">גשר בין שתי קהילות</div>
+  <div class="section-desc fade-up" style="margin:0 auto 2rem">אנחנו לא רק עוזרים לעלות &mdash; אנחנו בונים קהילה</div>
+  <div class="community-grid">
+    <div class="comm-card fade-up">
+      <span class="emoji" role="img" aria-label="synagogue">&#x1F54D;</span>
+      <h4>בתי כנסת וקהילות</h4>
+      <p>חיבור לבתי כנסת ולקהילות עם אופי אוסטרלי בישראל. שמירה על ה-DNA הקהילתי שאתם מכירים.</p>
+    </div>
+    <div class="comm-card fade-up">
+      <span class="emoji" role="img" aria-label="people">&#x1F91D;</span>
+      <h4>רשת עולים</h4>
+      <p>קבוצות תמיכה, אירועים חברתיים ומפגשים קבועים עם עולים מאוסטרליה. לא תהיו לבד.</p>
+    </div>
+    <div class="comm-card fade-up">
+      <span class="emoji" role="img" aria-label="family">&#x1F46A;</span>
+      <h4>פעילויות משפחתיות</h4>
+      <p>שבתות קהילתיות, מחנות קיץ, טיולים ופעילויות לילדים &mdash; בדיוק כמו בבני עקיבא במלבורן.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial">
+  <div class="quote-mark fade-up">&ldquo;</div>
+  <blockquote class="fade-up">אמיתי ניחן בכישרון רב בתחום ההוראה, בכישורים חברתיים בלתי רגילים, וביכולתו ליצור קשרים טובים &mdash; בטוחני כי יהווה נכס</blockquote>
+  <cite class="fade-up">&mdash; אלעד דהן, ראש כולל תורה מציון, מלבורן</cite>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="section-label fade-up" style="justify-content:center">בואו נדבר</div>
+  <h2 class="fade-up">מוכנים להתחיל<br>את המסע הביתה?</h2>
+  <p class="fade-up">שיחת ייעוץ ראשונית ללא עלות. ספרו לנו על החלום שלכם ונבנה יחד תוכנית.</p>
+  <div class="hero-btns fade-up" style="justify-content:center">
+    <a href="https://wa.me/972523898467" class="btn-primary" target="_blank">
+      דברו איתנו בוואטסאפ
+      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 01-4.243-1.216l-.256-.16-2.868.852.852-2.868-.16-.256A8 8 0 1112 20z"/></svg>
+    </a>
+    <a href="mailto:amitai3386@gmail.com" class="btn-outline">שלחו מייל</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo" style="font-size:1.3rem">
+        <svg viewBox="0 0 36 36" fill="none" width="30" height="30"><path d="M18 2L4 10v16l14 8 14-8V10L18 2z" stroke="#c9a96e" stroke-width="1.5"/><path d="M18 12v14M11 15.5L18 12l7 3.5" stroke="#c9a96e" stroke-width="1.2"/></svg>
+        <div><span>SHLICHUT</span> AUSTRALIA</div>
+      </div>
+      <p>שירותי עלייה וליווי קהילתי לקהילה היהודית באוסטרליה. מהחלום &mdash; למציאות בישראל.</p>
+    </div>
+    <div class="footer-col">
+      <h5>שירותים</h5>
+      <a href="#services">ליווי עלייה</a>
+      <a href="#services">דיור</a>
+      <a href="#services">חינוך</a>
+      <a href="#services">תעסוקה</a>
+      <a href="#services">ביורוקרטיה</a>
+    </div>
+    <div class="footer-col">
+      <h5>קהילה</h5>
+      <a href="#community">אירועים</a>
+      <a href="#community">רשת עולים</a>
+      <a href="#community">פעילויות</a>
+      <a href="#about">הסיפור שלנו</a>
+    </div>
+    <div class="footer-col">
+      <h5>צרו קשר</h5>
+      <a href="tel:+972523898467">052-3898467</a>
+      <a href="mailto:amitai3386@gmail.com">amitai3386@gmail.com</a>
+      <a href="https://wa.me/972523898467">WhatsApp</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Shlichut Australia. כל הזכויות שמורות.</p>
+    <div class="social-links">
+      <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/972523898467" class="whatsapp" target="_blank">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+</a>
+
+<script>
+// Nav scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50)
+})
+
+// Fade-up on scroll
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})
+},{threshold:.15,rootMargin:'0px 0px -50px 0px'})
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el))
+</script>
+
+</body>
+</html>
